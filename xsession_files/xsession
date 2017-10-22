@@ -1,0 +1,16 @@
+#xmodmap -e 'clear lock'
+#xmodmap -e 'keycode 66 = F13'
+xkbcomp /usr/share/X11/xkb/symbols/mmiluakeyboard $DISPLAY
+xmodmap -e 'keycode 192 = XF86AudioNext'
+xfce4-panel --disable-wm-check &
+#export XMODIFIERS=@im=ibus
+#export GTK_IM_MODULE=ibus
+#export QT_IM_MODULE=ibus
+if [ -d "$HOME/bin" ] ; then
+   PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+fi
+export EDITOR="~/bin/edit"
+xfce4-power-manager
+rescuetime &
+nm-applet &
+exec xmonad
